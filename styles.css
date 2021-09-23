@@ -1,0 +1,50 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #7768aeff;
+    height: 900px;
+}
+
+#accueil{
+    
+    width: 900px;
+    height: 500px;
+    background-color: #100b00ff;
+    color: #fff;
+}
+
+#accueil h1, h2{
+    text-align: center;
+}
+
+#accueil h1{
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+h2, p{
+    font-family: 'PT Sans Narrow', sans-serif;
+}
+
+img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 225px;
+}
+
+ul{
+    font-family: 'PT Sans Narrow', sans-serif;
+    list-style-type: '_';
+}
+
+
+ul li:hover{
+    color: #27187eff;
+}
+/* PALETTE DE COULEUR 
+--persian-indigo: #27187eff;
+--black-chocolate: #100b00ff;
+--light-gray: #c7d6d5ff;
+--magnolia: #ecebf3ff;
+--blue-violet-crayola: #7768aeff;*/
