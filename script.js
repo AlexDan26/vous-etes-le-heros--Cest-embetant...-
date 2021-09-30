@@ -48,6 +48,8 @@ crier_frapper = {
 
 
 
-function goToChapter(){
- console.log(chapterObj.chap1.text);
+function goToChapter(chapName){
+  const chapter = chapterObj[chapName];
+ console.log(chapter.subtitle);
+   console.log(chapter.text);
 }
