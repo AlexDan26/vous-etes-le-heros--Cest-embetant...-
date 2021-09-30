@@ -1,20 +1,14 @@
-let chap1 = {
- subtitle : "La face non cachée de la lune",
-  text: "Vous vous retrouvez dans une simulation un peu... Bizarre pour sauver votre compagnon qui y est enfermé. Devant vous, il y a un paysage de cosmos. Que faites-vous?",
-  img: "assets/Space.PNG"
+const chap1 = {
+ 
 };
 
 let chap2 = {
- subtitle : "«Je déteste le sable.»",
-  text: "L'étoile vous téléporte sur une île déserte. Il n'y a que du bois et quelque pièces électronique. Que faire avec cela?",
-  img: "assets/Beach.PNG"
+ 
   
 };
 
 let chap3 = {
- subtitle : "Le combat décisif",
-  text: "Une fois rendu plutôt loin de l'Île, vous vous téléporter encore, dans une foule autour d'un ring de boxe. Sur le ring, se trouve votre compagnon face à un grand luchadore.",
-  img: "assets/Fight.PNG"
+ 
   
 };
 
@@ -54,11 +48,17 @@ crier_frapper = {
   text: "Vous crier à votre ami des conseils pour battre le luchadore."
 }
 
-let chapterObj = {
+const chapterObj = {
   objet: "porte-voix",
-  chap1Obj: chap1,
-  chap2Obj: chap2,
-  chap3Obj: chap3
+  chap1: {subtitle : "La face non cachée de la lune",
+  text: "Vous vous retrouvez dans une simulation un peu... Bizarre pour sauver votre compagnon qui y est enfermé. En arrivant dans la simulation, vous contemplez un paysage de cosmos. Que faites-vous?",
+  img: "assets/Space.PNG"},
+  chap2: {subtitle : "«Je déteste le sable.»",
+  text: "L'étoile vous téléporte sur une île déserte. Il n'y a que du bois et quelque pièces électronique. Que faire avec cela?",
+  img: "assets/Beach.PNG"} ,
+  chap3Obj: {subtitle : "Le combat décisif",
+  text: "Une fois rendu plutôt loin de l'Île, vous vous téléporter encore, dans une foule autour d'un ring de boxe. Sur le ring, se trouve votre compagnon face à un grand luchadore.",
+  img: "assets/Fight.PNG"}
 };
 
 function goToChapter(){
