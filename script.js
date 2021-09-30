@@ -27,3 +27,7 @@ let chapterObj = {
   chap2Obj: chap2,
   chap3Obj: chap3
 };
+
+function goToChapter(){
+ 
+}
