@@ -5,4 +5,4 @@
 **Inspiration**: Saints Row 4<br />
 **Palettes de couleurs**: [coolors.co](https://coolors.co/27187e-100b00-c7d6d5-ecebf3-7768ae)<br />
 ## Diagramme
-<img src="assets/diagramme_NON_FINAL.PNG"/>
+<img src="assets/diagramme_non_final.PNG"/>
