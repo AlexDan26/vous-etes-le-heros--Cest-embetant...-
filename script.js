@@ -21,6 +21,11 @@ let chap3 = {
   
 };
 
+let premiererChoix = {
+ subtitle: 
+ options: //Il faut que ce soit un tableau, chaque actions doit être un objet et avoir un texte et une actions
+}
+
 let chapterObj = {
   objet: "porte-voix",
   chap1Obj: chap1,
