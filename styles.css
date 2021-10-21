@@ -9,7 +9,7 @@ body{
 #accueil{
     
     width: 900px;
-    height: 500px;
+    height: 600px;
     background-color: #100b00ff;
     color: #fff;
 }
@@ -33,9 +33,15 @@ img{
     width: 225px;
 }
 
-ul{
+.choix{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+button{
+    
     font-family: 'PT Sans Narrow', sans-serif;
-    list-style-type: '_';
 }
 
 
