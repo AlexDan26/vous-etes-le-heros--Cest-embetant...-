@@ -1,55 +1,168 @@
-const chapterObj = {
-  chap1: {subtitle : "La face non cachée de la lune",
-  text: "Vous vous retrouvez dans une simulation un peu... Bizarre pour sauver votre compagnon qui y est enfermé. En arrivant dans la simulation, vous contemplez un paysage de cosmos. Que faites-vous?",
-  img: "assets/Space.PNG"},
-  chap2: {subtitle : "«Je déteste le sable.»",
-  text: "L'étoile vous téléporte sur une île déserte. Il n'y a que du bois et quelque pièces électronique. Que faire avec cela?",
-  img: "assets/Beach.PNG"} ,
-  chap3Obj: {subtitle : "Le combat décisif",
-  text: "Une fois rendu plutôt loin de l'Île, vous vous téléporter encore, dans une foule autour d'un ring de boxe. Sur le ring, se trouve votre compagnon face à un grand luchadore.",
-  img: "assets/Fight.PNG"}
-};
+let varPorteVoix = 0;
+(porteVoixAcquired = function () {
+  varPorteVoix++;
+  goToChapter(`radeau`);
+}),
+(porteVoixAcquiredVerif = function () {
+    if (varPorteVoix > 0) {
+      goToChapter(`punch`);
+    } else {
+      goToChapter(`defaite`);
+    }
+});
 
-let premiererChoixChap1 = {
- options: options_choix_1 = [rester_lune, vers_toile_brillante]
+let chapterObj = {
+  chap1: {
+    subtitle : "La face non cachée de la lune",
+  text: "Vous vous retrouvez dans une simulation un peu... Bizarre pour sauver votre compagnon qui y est enfermé. En arrivant dans la simulation, vous contemplez un paysage de cosmos avec une étoile brillante au loin. Que faites-vous?",
+  img: "assets/Space.PNG",
+  options: [
+    {
+    text : "Attendre",
+    action: "goToChapter(`attendre`)",
+  },
+  {
+    text : "Aller vers l'étoile",
+    action: "goToChapter(`chap2`)",
+  }
+  ]
+
+},
+attendre: {
+  subtitle : "Attendre sur la lune",
+text: "Mouais... C'est beau, le cosmos, mais t'as pas que ça à faire.",
+img: "assets/Space.PNG",
+options: [
+{
+  text : "Aller vers l'étoile",
+  action: "goToChapter(`chap2`)",
 }
-
-let premiererChoixChap2 = {
-  options: options_choix_2 = [faire_radio, faire_porte_voix, faire_radeau]
+]
+},
+chap2: {
+  subtitle : "«Je déteste le sable.»",
+text: "L'étoile vous téléporte sur une île déserte. Il n'y a que du bois et quelque pièces électroniques. Que faire avec cela?",
+img: "assets/Beach.PNG",
+options: [
+{
+  text : "Créer une radio",
+  action: "goToChapter(`radio`)",
+},
+{
+  text : "Créer un porte-voix",
+  action: "goToChapter(`portevoix`)",
+},
+{
+  text : "Créer un radeau",
+  action: "goToChapter(`radeau`)",
 }
-
- let premiererChoixChap3 = {
-  options: options_choix_3 = [crier_frapper]
+]
+},
+radio: {
+  subtitle : "Radio Radio... ?",
+text: "Bravo pour vos talents d'électricien! Cependant, il n'y a pas d'électricité sur une île déserte...",
+img: "assets/Beach.PNG",
+options :[
+{
+  text : "Créer un porte-voix",
+  action: "goToChapter(`portevoix`)",
+},
+{
+  text : "Créer un radeau",
+  action: "goToChapter(`radeau`)",
 }
-
-rester_lune = {
-  text: "...Mouais... C'est un peu ennuyant l'espace..."
+]
+},
+portevoix: {
+  subtitle : "La voix des anges",
+text: "Vous avez frabriqué un porte-voix... Vous ne savez pas si ça va être utile, mais il a l'air cool, donc vous le gardez.",
+img: "assets/Beach.PNG",
+options :[
+{
+  text : "Créer un radeau",
+  action: "porteVoixAcquired()",
 }
-
-vers_toile_brillante = {
-  text: "Vous vous dirigez vers l'étoile brillante."
+]
+},
+radeau: {
+  subtitle : "Le voyage",
+text: "Vous avez frabriqué un radeau. C'est alors que vous vous dirigez vers l'horizon...",
+img: "assets/Beach.PNG",
+options :[
+{
+  text : "Suivant",
+  action: "goToChapter(`chap3`)",
 }
-
-faire_radio = {
-  text: "Bonne idée pour tenter de contacter votre ami, mais il n'y a pas d'électricité sur une île déserte... idiot."
+]
+},
+chap3: {
+  subtitle : "Le Ring du destin",
+text: "Vous vous retrouver à être téléporté dans une foule d'un ring de Catch. Dans ce ring, il y a un lachadore qui affronte votre ami, qui semble être en difficulté. Que faites-vous? ",
+img: "assets/Fight.PNG",
+options :[
+{
+  text : "Lui crier des conseils.",
+  action: "porteVoixAcquiredVerif()",
 }
-
-faire_porte_voix = {
-  text: "Vous fabriquez un porte-voix. Il ne va peut-être pas vous ervir à grand chose, mais il est cool, donc vous le gardez. Vous avez obtenu le Porte-voix!"
+]
+},
+defaite: {
+  subtitle : "Le catch, c'est pour de faux",
+text: "Malheureusement, Votre ami ne vous a pas entendu à cause de la foule en délire.",
+img: "assets/Game_Over.PNG",
+options :[
+{
+  text : "Suivant",
+  action: "goToChapter(`gameOver`)",
 }
-
-faire_radeau = {
-  text: "Vous fabriquez le radeau avec le pièce de bois qu'il se trouve sur l'île... Vous naviguez vers l'horizon..."
+]
+},
+gameOver: {
+  subtitle : "Game Over",
+text: "Voulez-vous recommencer?",
+img: "assets/Game_Over.PNG",
+options :[
+{
+  text : "Recommencer",
+  action: "goToChapter(`chap1`)",
 }
-
-crier_frapper = {
-  text: "Vous crier à votre ami des conseils pour battre le luchadore."
+]
+},
+punch: {
+  subtitle : "Le Porte-voix de Tchekhov",
+text: "Avec le porte-voix que vous avez conçu plus tôt, vous pouvez crier à votre ami que vous avez remaquez le point faible du luchadore: son menton. Ni une ni deux, votre ami lui porte un coup sur son menton.",
+img: "assets/Punch.PNG",
+options :[
+{
+  text : "Suivant",
+  action: "goToChapter(`victoire`)",
 }
-
-
+]
+},
+victoire: {
+  subtitle : "Victoire!",
+text: "Le luchadore tombe sur le coup et disparait. Votre ami prend la pose pour le public...Quel frimeur. Sur le ring apparait alors la porte de la sortie de la simulation. Vous la traversez pour finalement en sortir. Félicitations!",
+img: "assets/Victory.png",
+},
+}
 
 function goToChapter(chapName){
-  const chapter = chapterObj[chapName];
- console.log(chapter.subtitle);
-   console.log(chapter.text);
+  let chapter = document.querySelector("#chapTitre");
+  let texte = document.querySelector("#texte");
+  let img = document.querySelector("#img");
+  let choix = document.querySelector("#choix");
+  chapter.innerText = chapterObj[chapName].subtitle;
+  texte.innerText = chapterObj[chapName].texte;
+  image.innerHTML = `<img id="img" src="${chapterObj[chapName].img}" alt="chapter_img" />`;
+  let txtButton="";
+  for (
+    let index = 0;
+    index < chapterObj[chapName].options.length;
+    index++
+  ) 
+  {
+    const choice = chapterObj[chapName].options[index].action;
+    txtButton += `<div class="button"><button type="button" onclick="${chapterObj[chapName].options[index].action}">${chapterObj[chapName].options[index].text}</button></div>`;
+  }
+  choix.innerHTML = txtButton;
 }
