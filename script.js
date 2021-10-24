@@ -1,168 +1,167 @@
-let varPorteVoix = 0;
-(porteVoixAcquired = function () {
-  varPorteVoix++;
+let varPorteVoix = false;
+function porteVoixAcquired() {
+  varPorteVoix = true;
   goToChapter(`radeau`);
-}),
-(porteVoixAcquiredVerif = function () {
-    if (varPorteVoix > 0) {
-      goToChapter(`punch`);
-    } else {
-      goToChapter(`defaite`);
-    }
-});
+}
+
+function porteVoixAcquiredVerif() {
+  if (varPorteVoix == true) {
+    goToChapter(`punch`);
+  } else {
+    goToChapter(`defaite`);
+  }
+}
 
 let chapterObj = {
   chap1: {
-    subtitle : "La face non cachée de la lune",
-  text: "Vous vous retrouvez dans une simulation un peu... Bizarre pour sauver votre compagnon qui y est enfermé. En arrivant dans la simulation, vous contemplez un paysage de cosmos avec une étoile brillante au loin. Que faites-vous?",
-  img: "assets/Space.PNG",
-  options: [
-    {
-    text : "Attendre",
-    action: "goToChapter(`attendre`)",
+    subtitle: "La face non cachée de la lune",
+    text: "Vous vous retrouvez dans une simulation un peu... Bizarre pour sauver votre compagnon qui y est enfermé. En arrivant dans la simulation, vous contemplez un paysage de cosmos avec une étoile brillante au loin. Que faites-vous?",
+    img: "assets/Space.PNG",
+    options: [
+      {
+        text: "Attendre",
+        action: "goToChapter(`attendre`)",
+      },
+      {
+        text: "Aller vers l'étoile",
+        action: "goToChapter(`chap2`)",
+      },
+    ],
   },
-  {
-    text : "Aller vers l'étoile",
-    action: "goToChapter(`chap2`)",
-  }
-  ]
+  attendre: {
+    subtitle: "Attendre sur la lune",
+    text: "Mouais... C'est beau, le cosmos, mais t'as pas que ça à faire.",
+    img: "assets/Space.PNG",
+    options: [
+      {
+        text: "Aller vers l'étoile",
+        action: "goToChapter(`chap2`)",
+      },
+    ],
+  },
+  chap2: {
+    subtitle: "«Je déteste le sable.»",
+    text: "L'étoile vous téléporte sur une île déserte. Il n'y a que du bois et quelque pièces électroniques. Que faire avec cela?",
+    img: "assets/Beach.PNG",
+    options: [
+      {
+        text: "Créer une radio",
+        action: "goToChapter(`radio`)",
+      },
+      {
+        text: "Créer un porte-voix",
+        action: "goToChapter(`portevoix`)",
+      },
+      {
+        text: "Créer un radeau",
+        action: "goToChapter(`radeau`)",
+      },
+    ],
+  },
+  radio: {
+    subtitle: "Radio Radio... ?",
+    text: "Bravo pour vos talents d'électricien! Cependant, il n'y a pas d'électricité sur une île déserte...",
+    img: "assets/Beach.PNG",
+    options: [
+      {
+        text: "Créer un porte-voix",
+        action: "goToChapter(`portevoix`)",
+      },
+      {
+        text: "Créer un radeau",
+        action: "goToChapter(`radeau`)",
+      },
+    ],
+  },
+  portevoix: {
+    subtitle: "La voix des anges",
+    text: "Vous avez frabriqué un porte-voix... Vous ne savez pas si ça va être utile, mais il a l'air cool, donc vous le gardez.",
+    img: "assets/Beach.PNG",
+    options: [
+      {
+        text: "Créer un radeau",
+        action: "porteVoixAcquired()",
+      },
+    ],
+  },
+  radeau: {
+    subtitle: "Le voyage",
+    text: "Vous avez frabriqué un radeau. C'est alors que vous vous dirigez vers l'horizon...",
+    img: "assets/Beach.PNG",
+    options: [
+      {
+        text: "Suivant",
+        action: "goToChapter(`chap3`)",
+      },
+    ],
+  },
+  chap3: {
+    subtitle: "Le Ring du destin",
+    text: "Vous vous retrouver à être téléporté dans une foule d'un ring de Catch. Dans ce ring, il y a un lachadore qui affronte votre ami, qui semble être en difficulté. Que faites-vous? ",
+    img: "assets/Fight.PNG",
+    options: [
+      {
+        text: "Lui crier des conseils.",
+        action: "porteVoixAcquiredVerif()",
+      },
+    ],
+  },
+  defaite: {
+    subtitle: "Le catch, c'est pour de faux",
+    text: "Malheureusement, Votre ami ne vous a pas entendu à cause de la foule en délire.",
+    img: "assets/Game_Over.PNG",
+    options: [
+      {
+        text: "Suivant",
+        action: "goToChapter(`gameOver`)",
+      },
+    ],
+  },
+  gameOver: {
+    subtitle: "Game Over",
+    text: "Voulez-vous recommencer?",
+    img: "assets/Game_Over.PNG",
+    options: [
+      {
+        text: "Recommencer",
+        action: "goToChapter(`chap1`)",
+      },
+    ],
+  },
+  punch: {
+    subtitle: "Le Porte-voix de Tchekhov",
+    text: "Avec le porte-voix que vous avez conçu plus tôt, vous pouvez crier à votre ami que vous avez remaquez le point faible du luchadore: son menton. Ni une ni deux, votre ami lui porte un coup sur son menton.",
+    img: "assets/Punch.PNG",
+    options: [
+      {
+        text: "Suivant",
+        action: "goToChapter(`victoire`)",
+      },
+    ],
+  },
+  victoire: {
+    subtitle: "Victoire!",
+    text: "Le luchadore tombe sur le coup et disparait. Votre ami prend la pose pour le public...Quel frimeur. Sur le ring apparait alors la porte de la sortie de la simulation. Vous la traversez pour finalement en sortir. Félicitations!",
+    img: "assets/Victory.png",
+  },
+};
 
-},
-attendre: {
-  subtitle : "Attendre sur la lune",
-text: "Mouais... C'est beau, le cosmos, mais t'as pas que ça à faire.",
-img: "assets/Space.PNG",
-options: [
-{
-  text : "Aller vers l'étoile",
-  action: "goToChapter(`chap2`)",
-}
-]
-},
-chap2: {
-  subtitle : "«Je déteste le sable.»",
-text: "L'étoile vous téléporte sur une île déserte. Il n'y a que du bois et quelque pièces électroniques. Que faire avec cela?",
-img: "assets/Beach.PNG",
-options: [
-{
-  text : "Créer une radio",
-  action: "goToChapter(`radio`)",
-},
-{
-  text : "Créer un porte-voix",
-  action: "goToChapter(`portevoix`)",
-},
-{
-  text : "Créer un radeau",
-  action: "goToChapter(`radeau`)",
-}
-]
-},
-radio: {
-  subtitle : "Radio Radio... ?",
-text: "Bravo pour vos talents d'électricien! Cependant, il n'y a pas d'électricité sur une île déserte...",
-img: "assets/Beach.PNG",
-options :[
-{
-  text : "Créer un porte-voix",
-  action: "goToChapter(`portevoix`)",
-},
-{
-  text : "Créer un radeau",
-  action: "goToChapter(`radeau`)",
-}
-]
-},
-portevoix: {
-  subtitle : "La voix des anges",
-text: "Vous avez frabriqué un porte-voix... Vous ne savez pas si ça va être utile, mais il a l'air cool, donc vous le gardez.",
-img: "assets/Beach.PNG",
-options :[
-{
-  text : "Créer un radeau",
-  action: "porteVoixAcquired()",
-}
-]
-},
-radeau: {
-  subtitle : "Le voyage",
-text: "Vous avez frabriqué un radeau. C'est alors que vous vous dirigez vers l'horizon...",
-img: "assets/Beach.PNG",
-options :[
-{
-  text : "Suivant",
-  action: "goToChapter(`chap3`)",
-}
-]
-},
-chap3: {
-  subtitle : "Le Ring du destin",
-text: "Vous vous retrouver à être téléporté dans une foule d'un ring de Catch. Dans ce ring, il y a un lachadore qui affronte votre ami, qui semble être en difficulté. Que faites-vous? ",
-img: "assets/Fight.PNG",
-options :[
-{
-  text : "Lui crier des conseils.",
-  action: "porteVoixAcquiredVerif()",
-}
-]
-},
-defaite: {
-  subtitle : "Le catch, c'est pour de faux",
-text: "Malheureusement, Votre ami ne vous a pas entendu à cause de la foule en délire.",
-img: "assets/Game_Over.PNG",
-options :[
-{
-  text : "Suivant",
-  action: "goToChapter(`gameOver`)",
-}
-]
-},
-gameOver: {
-  subtitle : "Game Over",
-text: "Voulez-vous recommencer?",
-img: "assets/Game_Over.PNG",
-options :[
-{
-  text : "Recommencer",
-  action: "goToChapter(`chap1`)",
-}
-]
-},
-punch: {
-  subtitle : "Le Porte-voix de Tchekhov",
-text: "Avec le porte-voix que vous avez conçu plus tôt, vous pouvez crier à votre ami que vous avez remaquez le point faible du luchadore: son menton. Ni une ni deux, votre ami lui porte un coup sur son menton.",
-img: "assets/Punch.PNG",
-options :[
-{
-  text : "Suivant",
-  action: "goToChapter(`victoire`)",
-}
-]
-},
-victoire: {
-  subtitle : "Victoire!",
-text: "Le luchadore tombe sur le coup et disparait. Votre ami prend la pose pour le public...Quel frimeur. Sur le ring apparait alors la porte de la sortie de la simulation. Vous la traversez pour finalement en sortir. Félicitations!",
-img: "assets/Victory.png",
-},
-}
-
-function goToChapter(chapName){
+function goToChapter(chapName) {
   let chapter = document.querySelector("#chapTitre");
   let texte = document.querySelector("#texte");
-  let img = document.querySelector("#img");
-  let choix = document.querySelector("#choix");
+  let media = document.querySelector(".media");
+  let choix = document.querySelector(".choix");
+
   chapter.innerText = chapterObj[chapName].subtitle;
-  texte.innerText = chapterObj[chapName].texte;
-  image.innerHTML = `<img id="img" src="${chapterObj[chapName].img}" alt="chapter_img" />`;
-  let txtButton="";
-  for (
-    let index = 0;
-    index < chapterObj[chapName].options.length;
-    index++
-  ) 
-  {
+  texte.innerText = chapterObj[chapName].text;
+  media.innerHTML = `<img src="${chapterObj[chapName].img}" alt="chapter_img" />`;
+
+  let txtButton = "";
+  for (let index = 0; index < chapterObj[chapName].options.length; index++) {
     const choice = chapterObj[chapName].options[index].action;
-    txtButton += `<div class="button"><button type="button" onclick="${chapterObj[chapName].options[index].action}">${chapterObj[chapName].options[index].text}</button></div>`;
+    txtButton += `<div class="button"><button type="button" onclick="${choice}">${chapterObj[chapName].options[index].text}</button></div>`;
   }
   choix.innerHTML = txtButton;
 }
+
+goToChapter("chap1");
