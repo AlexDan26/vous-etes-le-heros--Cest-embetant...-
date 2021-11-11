@@ -163,5 +163,5 @@ function goToChapter(chapName) {
   }
   choix.innerHTML = txtButton;
 }
-
+console.log("test");
 goToChapter("chap1");
