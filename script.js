@@ -171,12 +171,20 @@ function goToChapter(chapName) {
   let media = document.querySelector(".media");
   let choix = document.querySelector(".choix");
 
-  localStorage.setItem("chapter", chapterObj);
+  localStorage.setItem("chapter", chapterObj[chapName]);
+   if(localStorage.getItem("chapter") != undefined){
+    goToChapter(localStorage.getItem("chapter"));
+   };
 
   chapter.innerText = chapterObj[chapName].subtitle;
   texte.innerText = chapterObj[chapName].text;
-  //if () 
-  media.innerHTML = `<video class="video" width="620" src="${chapterObj[chapName].video}" loop autoplay muted></video>`; //`<img src="${chapterObj[chapName].img}" alt="chapter_img" />`;
+  if (chapterObj[chapName].video !=undefined) {
+    media.innerHTML = `<video class="video" width="620" src="${chapterObj[chapName].video}" loop autoplay muted></video>`; //`<img src="${chapterObj[chapName].img}" alt="chapter_img" />`;
+  }
+  else{
+    media.innerHTML = `<img src="${chapterObj[chapName].img}" alt="chapter_img" />`;
+  }
+  //media.innerHTML = `<video class="video" width="620" src="${chapterObj[chapName].video}" loop autoplay muted></video>`; //`<img src="${chapterObj[chapName].img}" alt="chapter_img" />`;
 
   let txtButton = "";
   for (let index = 0; index < chapterObj[chapName].options.length; index++) {
