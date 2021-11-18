@@ -45,10 +45,9 @@ button{
 }
 
 .media{
-    margin: 0;
-    top: 50%;
-    -ms-transform: translateX(15%);
-    transform: translateX(15%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 

@@ -1,10 +1,12 @@
 let varPorteVoix = false;
 function porteVoixAcquired() {
   varPorteVoix = true;
+  localStorage.setItem("porteVoixSave", varPorteVoix);
   goToChapter(`radeau`);
 }
 
 function porteVoixAcquiredVerif() {
+  localStorage.setItem("porteVoixSave", varPorteVoix);
   if (varPorteVoix == true) {
     goToChapter(`punch`);
   } else {
@@ -154,6 +156,12 @@ let chapterObj = {
     text: "Le luchadore tombe sur le coup et disparait. Votre ami prend la pose pour le public...Quel frimeur. Sur le ring apparait alors la porte de la sortie de la simulation. Vous la traversez pour finalement en sortir. Félicitations!",
     video : "assets/Victory.mp4",
     img: "assets/Victory.png",
+    options: [
+      {
+        text: "Recommencer",
+        action: "goToChapter(`chap1`)",
+      },
+    ]
   },
 };
 
@@ -163,14 +171,20 @@ function goToChapter(chapName) {
   let media = document.querySelector(".media");
   let choix = document.querySelector(".choix");
 
+  localStorage.setItem("chapter", chapterObj);
+
   chapter.innerText = chapterObj[chapName].subtitle;
   texte.innerText = chapterObj[chapName].text;
-  media.innerHTML = `<video class="video" width="620" src="${chapterObj[chapName].video}"></video>`; //`<img src="${chapterObj[chapName].img}" alt="chapter_mp4" />`;
+  //if () 
+  media.innerHTML = `<video class="video" width="620" src="${chapterObj[chapName].video}" loop autoplay muted></video>`; //`<img src="${chapterObj[chapName].img}" alt="chapter_img" />`;
 
   let txtButton = "";
   for (let index = 0; index < chapterObj[chapName].options.length; index++) {
     const choice = chapterObj[chapName].options[index].action;
     txtButton += `<div><button type="button" class="button" onclick="${choice}">${chapterObj[chapName].options[index].text}</button></div>`;
+    const audio = new Audio('assets/son.mp3')
+    audio.pause();
+    audio.play();
   }
   choix.innerHTML = txtButton;
 }
@@ -178,8 +192,5 @@ console.log("test");
 goToChapter("chap1");
 let button = document.querySelector(".button");
 
-button.addEventListener("click", function() {
-  const audio = new Audio('assets/son.wav')
-  audio.play();
-});
+
 
