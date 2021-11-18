@@ -44,6 +44,13 @@ button{
     font-family: 'PT Sans Narrow', sans-serif;
 }
 
+.media{
+    margin: 0;
+    top: 50%;
+    -ms-transform: translateX(15%);
+    transform: translateX(15%);
+}
+
 
 ul li:hover{
     color: #27187eff;
