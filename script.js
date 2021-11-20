@@ -1,4 +1,10 @@
+const audio = new Audio('assets/son.mp3');
+
 let varPorteVoix = false;
+if(localStorage.getItem("porteVoixSave") != undefined) {
+  varPorteVoix = localStorage.getItem("porteVoixSave");
+};
+
 function porteVoixAcquired() {
   varPorteVoix = true;
   localStorage.setItem("porteVoixSave", varPorteVoix);
@@ -6,7 +12,6 @@ function porteVoixAcquired() {
 }
 
 function porteVoixAcquiredVerif() {
-  localStorage.setItem("porteVoixSave", varPorteVoix);
   if (varPorteVoix == true) {
     goToChapter(`punch`);
   } else {
@@ -166,22 +171,21 @@ let chapterObj = {
 };
 
 function goToChapter(chapName) {
+  audio.currentTime = 0;
+  audio.play();
+
   let chapter = document.querySelector("#chapTitre");
   let texte = document.querySelector("#texte");
   let media = document.querySelector(".media");
   let choix = document.querySelector(".choix");
 
-  localStorage.setItem("chapter", chapterObj[chapName]);
-   if(localStorage.getItem("chapter") != undefined){
-    goToChapter(localStorage.getItem("chapter"));
-   };
+  localStorage.setItem("chapter", chapName);
 
   chapter.innerText = chapterObj[chapName].subtitle;
   texte.innerText = chapterObj[chapName].text;
   if (chapterObj[chapName].video !=undefined) {
     media.innerHTML = `<video class="video" width="620" src="${chapterObj[chapName].video}" loop autoplay muted></video>`; //`<img src="${chapterObj[chapName].img}" alt="chapter_img" />`;
-  }
-  else{
+  } else {
     media.innerHTML = `<img src="${chapterObj[chapName].img}" alt="chapter_img" />`;
   }
   //media.innerHTML = `<video class="video" width="620" src="${chapterObj[chapName].video}" loop autoplay muted></video>`; //`<img src="${chapterObj[chapName].img}" alt="chapter_img" />`;
@@ -190,15 +194,13 @@ function goToChapter(chapName) {
   for (let index = 0; index < chapterObj[chapName].options.length; index++) {
     const choice = chapterObj[chapName].options[index].action;
     txtButton += `<div><button type="button" class="button" onclick="${choice}">${chapterObj[chapName].options[index].text}</button></div>`;
-    const audio = new Audio('assets/son.mp3')
-    audio.pause();
-    audio.play();
   }
   choix.innerHTML = txtButton;
 }
-console.log("test");
-goToChapter("chap1");
-let button = document.querySelector(".button");
 
+let chapter = "chap1";
+if(localStorage.getItem("chapter") != undefined) {
+  chapter = goToChapter(localStorage.getItem("chapter"));
+};
 
-
+goToChapter(chapter);
