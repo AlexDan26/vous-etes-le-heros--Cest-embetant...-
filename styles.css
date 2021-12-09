@@ -7,7 +7,7 @@ body{
 }
 
 #accueil{
-    
+    padding: 20px;
     width: 900px;
     height: 600px;
     background-color: #100b00ff;
@@ -53,6 +53,27 @@ button{
 
 ul li:hover{
     color: #27187eff;
+}
+
+.reset{
+    margin-left: 21vw;
+}
+
+.boxing_ring{
+    background-image: url("assets/boxing_ring.jpg");
+}
+
+.boxing_ring h2, .boxing_ring p, .boxing_ring #accueil h1{
+    font-family: 'Impact';
+    color: #27187eff;
+}
+
+.space{
+    background-image: url("assets/galaxy.jpg");
+}
+
+.space h2, .space p, .space #accueil h1{
+    font-family: 'Lucida Console',monospace;
 }
 /* PALETTE DE COULEUR 
 --persian-indigo: #27187eff;
