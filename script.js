@@ -1,4 +1,12 @@
 const audio = new Audio('assets/son.mp3');
+let activerAudio = true;
+let checkMute = document.querySelector("#mute");
+
+checkMute.addEventListener("click", function(){
+  activerAudio = checkMute.checked;
+  console.log(activerAudio);
+  localStorage.setItem("storageAudio", activerAudio);
+});
 
 let varPorteVoix = false;
 if(localStorage.getItem("porteVoixSave") != undefined) {
@@ -171,8 +179,26 @@ let chapterObj = {
 };
 
 function goToChapter(chapName) {
+  if(activerAudio == true){
   audio.currentTime = 0;
   audio.play();
+  };
+
+  if(chapName == `chap3`){
+    console.log("La boxe");
+    document.querySelector("body").classList.toggle('boxing_ring');
+  }
+  else if(chapName != `chap3`) {
+    document.querySelector("body").classList.remove('boxing_ring');
+  }
+
+  if(chapName == `chap1`){
+    console.log("La boxe");
+    document.querySelector("body").classList.toggle('space');
+  }
+  else if(chapName != `chap1`) {
+    document.querySelector("body").classList.remove('space');
+  }
 
   let chapter = document.querySelector("#chapTitre");
   let texte = document.querySelector("#texte");
@@ -204,3 +230,12 @@ if(localStorage.getItem("chapter") != undefined) {
 };
 
 goToChapter(chapter);
+
+let resetBtn = document.querySelector(".reset")
+
+resetBtn.addEventListener("click", function(){
+  varPorteVoix = false;
+  localStorage.clear();
+  goToChapter(`chap1`);
+});
+
